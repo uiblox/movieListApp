@@ -7,9 +7,9 @@ export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const activeClass =
-    "text-base block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent dark:text-white";
+    "text-base block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent text-blue-700 dark:text-white";
   const inActiveClass =
-    "text-base block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent dark:border-gray-700 dark:text-white";
+    "text-base block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent dark:border-gray-700 hover:text-blue-500 dark:text-white";
 
   const handleColorMode = () => {
     // if set via local storage previously
