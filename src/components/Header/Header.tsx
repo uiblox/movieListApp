@@ -4,10 +4,18 @@ import Logo from "../../assets/logo.png";
 
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    (localStorage.getItem("color-theme") === "dark" ? false : true) || false,
+  );
 
   useEffect(() => {
-    console.log(isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("color-theme", "");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");
+    }
   }, [isDarkMode]);
 
   const activeClass =
@@ -16,30 +24,7 @@ export const Header = () => {
     "text-base block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent dark:border-gray-700 hover:text-blue-500 dark:text-white";
 
   const handleColorMode = () => {
-    // if set via local storage previously
-    if (localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-        setIsDarkMode(true);
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-        setIsDarkMode(false);
-      }
-
-      // if NOT set via local storage previously
-    } else {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-        setIsDarkMode(false);
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-        setIsDarkMode(true);
-      }
-    }
+    setIsDarkMode(!isDarkMode);
   };
 
   return (
