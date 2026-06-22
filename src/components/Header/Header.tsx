@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../../assets/logo.png";
 
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    console.log(isDarkMode);
+  }, [isDarkMode]);
 
   const activeClass =
     "text-base block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:p-0 md:dark:hover:bg-transparent text-blue-700 dark:text-white";
@@ -105,7 +109,7 @@ export const Header = () => {
               type="text"
               id="input-group-1"
               className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:text-white"
-              placeholder="Search"
+              placeholder="Search..."
               autoComplete="off"
             />
           </div>
@@ -139,12 +143,12 @@ export const Header = () => {
             <button
               id="theme-toggle"
               type="button"
-              className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 dark:text-white"
+              className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 text-sm p-2.5 dark:text-white"
               onClick={handleColorMode}
             >
               <svg
                 id="theme-toggle-dark-icon"
-                className={`${isDarkMode} ?  hidden : ""` + `w-5 h-5`}
+                className={`w-4 h-4 ${isDarkMode ? "hidden" : ""}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +157,7 @@ export const Header = () => {
               </svg>
               <svg
                 id="theme-toggle-light-icon"
-                className={`$isDarkMode} ?  "" : "hidden"` + `w-5 h-5`}
+                className={`w-4 h-4 ${isDarkMode ? "" : "hidden"}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
