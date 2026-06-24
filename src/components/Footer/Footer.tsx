@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export const Footer = () => {
   return (
-    <footer className="bg-neutral-primary-soft shadow-xs border border-default h-full">
+    <footer className="bg-neutral-primary-soft shadow-xs h-full border-t-1 dark:border-gray-100">
       <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span className="text-sm text-body sm:text-center dark:text-white">
           © 2026{" "}
