@@ -1,5 +1,5 @@
 import { MovieCard } from "../components";
-import { useFetch } from "../hooks/useHooks";
+import { useFetch } from "../hooks/useFetch";
 
 interface MovieListProps {
   apiTargetPath: string;
