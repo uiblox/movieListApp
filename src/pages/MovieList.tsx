@@ -1,16 +1,6 @@
 import { MovieCard } from "../components";
 import { useFetch } from "../hooks/useHooks";
 
-interface MovieType {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  title: string;
-  original_language: string;
-  original_title: string;
-}
-
 interface MovieListProps {
   apiTargetPath: string;
 }
