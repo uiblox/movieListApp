@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 
-export const useFetch = (apiTargetPath: string) => {
+export const useFetch = (apiTargetPath: string, queryTerms?: string | null) => {
   const [data, setData] = useState([]);
   const movie_key = import.meta.env.VITE_API_KEY;
-  const url = `https://api.themoviedb.org/3/${apiTargetPath}?api_key=${movie_key}`;
+  const url = queryTerms
+    ? `https://api.themoviedb.org/3/${apiTargetPath}?api_key=${movie_key}&query=${queryTerms}`
+    : `https://api.themoviedb.org/3/${apiTargetPath}?api_key=${movie_key}`;
 
   useEffect(() => {
     async function fetchMovies() {

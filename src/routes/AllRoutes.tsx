@@ -22,7 +22,10 @@ export const AllRoutes = () => {
           path="/movies/upcoming"
           element={<MovieList apiTargetPath="movie/upcoming" />}
         />
-        <Route path="search" element={<Search />} />
+        <Route
+          path="search"
+          element={<Search apiTargetPath="search/movie" />}
+        />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
     </>
