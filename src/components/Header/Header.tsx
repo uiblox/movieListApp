@@ -34,7 +34,7 @@ export const Header = () => {
     const formData = new FormData(e.currentTarget);
     const searchText = formData.get("search");
     e.target.reset();
-    navigate(`/search/movie?q=${searchText}`);
+    navigate(`/search?q=${searchText}`);
   };
 
   return (
