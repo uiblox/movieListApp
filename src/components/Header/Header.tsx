@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../../assets/logo.png";
 
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
+  const navigate = useNavigate();
+
   const [isDarkMode, setIsDarkMode] = useState(
     (localStorage.getItem("color-theme") === "dark" ? false : true) || false,
   );
@@ -27,11 +29,19 @@ export const Header = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const searchText = formData.get("search");
+    e.target.reset();
+    navigate(`/search/movie?q=${searchText}`);
+  };
+
   return (
     <nav className="bg-neutral-primary w-full z-20 top-0 start-0 border-b border-default border-b-1 dark:border-gray-100">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
-          to="https://flowbite.com/"
+          to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img src={Logo} className="h-7" alt="Cinemate" />
@@ -89,14 +99,16 @@ export const Header = () => {
                 />
               </svg>
             </div>
-
-            <input
-              type="text"
-              id="input-group-1"
-              className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:text-white"
-              placeholder="Search..."
-              autoComplete="off"
-            />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="search"
+                id="input-group-1"
+                className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:text-white"
+                placeholder="Search..."
+                autoComplete="off"
+              />
+            </form>
           </div>
           <button
             data-collapse-toggle="navbar-search"
@@ -179,13 +191,16 @@ export const Header = () => {
                 />
               </svg>
             </div>
-            <input
-              type="text"
-              id="input-group-1"
-              className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:text-white"
-              placeholder="Search"
-              autoComplete="off"
-            />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="search"
+                id="input-group-1"
+                className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:text-white"
+                placeholder="Search"
+                autoComplete="off"
+              />
+            </form>
           </div>
 
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary dark:border-white">
