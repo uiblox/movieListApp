@@ -17,6 +17,14 @@ export const Search: React.FC<MovieListProps> = ({
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">
+        <div className="p-2">
+          <p className="text-gray-500 dark:text-white font-semibold">
+            {movies.length > 0
+              ? `Search result for: ${queryTerms}`
+              : `No result found for: "${queryTerms}`}
+            "
+          </p>
+        </div>
         <div className="flex justify-center lg:justify-start flex-wrap gap-4">
           {movies.length
             ? movies.map((movie) => (
