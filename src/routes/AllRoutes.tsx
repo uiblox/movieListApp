@@ -27,6 +27,10 @@ export const AllRoutes = () => {
           element={<Search apiTargetPath="search/movie" />}
         />
         <Route path="*" element={<NotFound404 />} />
+        <Route
+          path="movie/:id"
+          element={<MovieItem apiTargetPath="movie/id" />}
+        />
       </Routes>
     </>
   );
