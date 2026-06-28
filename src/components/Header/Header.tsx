@@ -32,8 +32,9 @@ export const Header = () => {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const searchText = formData.get("search");
+    const searchText = formData.get("search") as string;
     e.target.reset();
+    if (!searchText.length) return;
     navigate(`/search?q=${searchText}`);
   };
 
