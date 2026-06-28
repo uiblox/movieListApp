@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 
 export const MovieCard = ({ movieData }: { movieData: any }) => {
-  console.log("what is movie data", movieData.title);
   return (
     <div className="bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs dark:border-gray-100">
       <Link to={`/movie/${movieData.id}`}>
