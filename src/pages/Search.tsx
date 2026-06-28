@@ -26,11 +26,9 @@ export const Search: React.FC<MovieListProps> = ({
           </p>
         </div>
         <div className="flex justify-center lg:justify-start flex-wrap gap-4">
-          {movies.length
-            ? movies.map((movie) => (
-                <MovieCard key={movie.id} movieData={movie} />
-              ))
-            : "no movies"}
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movieData={movie} />
+          ))}
         </div>
       </section>
     </main>
