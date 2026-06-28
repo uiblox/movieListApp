@@ -9,7 +9,6 @@ export const AllRoutes = () => {
           path="/"
           element={<MovieList apiTargetPath="movie/now_playing" />}
         />
-        <Route path="/movie/:id" element={<MovieItem />} />
         <Route
           path="/movies/popular"
           element={<MovieList apiTargetPath="movie/popular" />}
@@ -27,10 +26,7 @@ export const AllRoutes = () => {
           element={<Search apiTargetPath="search/movie" />}
         />
         <Route path="*" element={<NotFound404 />} />
-        <Route
-          path="movie/:id"
-          element={<MovieItem apiTargetPath="movie/id" />}
-        />
+        <Route path="movie/:id" element={<MovieItem />} />
       </Routes>
     </>
   );
