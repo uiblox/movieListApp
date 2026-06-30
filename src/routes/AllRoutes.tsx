@@ -7,25 +7,29 @@ export const AllRoutes = () => {
       <Routes>
         <Route
           path="/"
-          element={<MovieList apiTargetPath="movie/now_playing" />}
+          element={<MovieList apiTargetPath="movie/now_playing" title="Home" />}
         />
         <Route
           path="/movies/popular"
-          element={<MovieList apiTargetPath="movie/popular" />}
+          element={<MovieList apiTargetPath="movie/popular" title="Popular" />}
         />
         <Route
           path="/movies/top"
-          element={<MovieList apiTargetPath="movie/top_rated" />}
+          element={
+            <MovieList apiTargetPath="movie/top_rated" title="Top Rated" />
+          }
         />
         <Route
           path="/movies/upcoming"
-          element={<MovieList apiTargetPath="movie/upcoming" />}
+          element={
+            <MovieList apiTargetPath="movie/upcoming" title="Upcoming" />
+          }
         />
         <Route
           path="search"
-          element={<Search apiTargetPath="search/movie" />}
+          element={<Search apiTargetPath="search/movie" title="Searched" />}
         />
-        <Route path="*" element={<NotFound404 />} />
+        <Route path="*" element={<NotFound404 title="Page Not Found" />} />
         <Route path="movie/:id" element={<MovieItem />} />
       </Routes>
     </>
