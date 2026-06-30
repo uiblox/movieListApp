@@ -1,7 +1,9 @@
 import { Link } from "react-router";
 import PageNotFoundImage from "../assets/images/pagenotfound.png";
+import { usePageTitle } from "../hooks/usePageTitle";
 
-export const NotFound404 = () => {
+export const NotFound404 = ({ title }: { title: string }) => {
+  const setDocumentTitle = usePageTitle(title);
   return (
     <main>
       <section className="flex flex-col justify-center px-2">

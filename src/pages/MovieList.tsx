@@ -1,15 +1,18 @@
 import { MovieCard } from "../components";
 import { useFetch } from "../hooks/useFetch";
+import { usePageTitle } from "../hooks/usePageTitle";
 
-interface MovieListProps {
+export interface MovieListProps {
   apiTargetPath: string;
+  title: string;
 }
 
 export const MovieList: React.FC<MovieListProps> = ({
   apiTargetPath,
+  title,
 }: MovieListProps) => {
   const { data: movies } = useFetch(apiTargetPath);
-
+  const setDocumentTitle = usePageTitle(title);
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">
