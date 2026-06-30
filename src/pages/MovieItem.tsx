@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 interface MovieDetails {
   title: string;
@@ -23,7 +24,7 @@ export const MovieItem = () => {
   const movie_key = import.meta.env.VITE_API_KEY;
   const url = `https://api.themoviedb.org/3/movie/${movieIdentifer}}?api_key=${movie_key}`;
 
-  console.log(movieIdentifer);
+  usePageTitle(data?.title ?? "");
 
   useEffect(() => {
     async function fetchMovie() {
