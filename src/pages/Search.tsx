@@ -13,7 +13,7 @@ export const Search: React.FC<MovieListProps> = ({
 
   const { data: movies } = useFetch(apiTargetPath, queryTerms);
   const searchTitle = `${title} ${queryTerms}`;
-  const setDocumentTitle = usePageTitle(searchTitle);
+  usePageTitle(searchTitle);
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">

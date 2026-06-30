@@ -12,7 +12,7 @@ export const MovieList: React.FC<MovieListProps> = ({
   title,
 }: MovieListProps) => {
   const { data: movies } = useFetch(apiTargetPath);
-  const setDocumentTitle = usePageTitle(title);
+  usePageTitle(title);
   return (
     <main>
       <section className="max-w-7xl mx-auto py-7">
