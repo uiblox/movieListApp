@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router";
 import { MovieCard } from "../components";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch, type Movie } from "../hooks/useFetch";
 import { usePageTitle } from "../hooks/usePageTitle";
 import { type MovieListProps } from "./MovieList";
 
@@ -11,7 +11,7 @@ export const Search: React.FC<MovieListProps> = ({
   const [searchParams] = useSearchParams();
   const queryTerms = searchParams.get("q");
 
-  const { data: movies } = useFetch(apiTargetPath, queryTerms);
+  const { data: movies } = useFetch<Movie>(apiTargetPath, queryTerms);
   const searchTitle = `${title} ${queryTerms}`;
   usePageTitle(searchTitle);
   return (

@@ -1,5 +1,5 @@
 import { MovieCard } from "../components";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch, type Movie } from "../hooks/useFetch";
 import { usePageTitle } from "../hooks/usePageTitle";
 
 export interface MovieListProps {
@@ -11,7 +11,7 @@ export const MovieList: React.FC<MovieListProps> = ({
   apiTargetPath,
   title,
 }: MovieListProps) => {
-  const { data: movies } = useFetch(apiTargetPath);
+  const { data: movies } = useFetch<Movie>(apiTargetPath);
   usePageTitle(title);
   return (
     <main>
