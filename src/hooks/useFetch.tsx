@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface Movie {
   id: number;
@@ -18,13 +18,17 @@ export const useFetch = <T,>(
   const normalizedQuery = queryTerms ?? "";
   const url = `https://api.themoviedb.org/3/${apiTargetPath}?api_key=${movie_key}&query=${normalizedQuery}`;
 
+  const controllerRef = useRef<AbortController | null>(null);
+
   useEffect(() => {
-    const controller = new AbortController();
     async function fetchMovies() {
+      controllerRef.current?.abort();
+      controllerRef.current = new AbortController();
       setIsLoading(true);
+
       try {
         const fetchResponse = await fetch(url, {
-          signal: controller.signal,
+          signal: controllerRef.current.signal,
         });
         const jsonResponse = await fetchResponse.json();
         setData((jsonResponse.results ?? []) as T[]);
@@ -42,7 +46,7 @@ export const useFetch = <T,>(
     fetchMovies();
 
     return () => {
-      controller.abort();
+      controllerRef.current?.abort();
     };
   }, [url]);
 
