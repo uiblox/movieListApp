@@ -32,11 +32,13 @@ export const MovieList: React.FC<MovieListProps> = ({
     <main>
       <section className="max-w-7xl mx-auto py-7">
         <div className="flex justify-center lg:justify-start flex-wrap gap-4">
-          {isLoading
-            ? "...loading"
-            : movies.map((movie) => (
-                <MovieCard key={movie.id} movieData={movie} />
-              ))}
+          {isLoading ? (
+            <p className="ml-2 text-gray-700 dark:text-white">{"...loading"}</p>
+          ) : (
+            movies.map((movie) => (
+              <MovieCard key={movie.id} movieData={movie} />
+            ))
+          )}
         </div>
       </section>
     </main>
