@@ -12,6 +12,8 @@ export const useFetch = <T,>(
   queryTerms: string | null = "",
 ) => {
   const [data, setData] = useState<T[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setError] = useState(false);
   const movie_key = import.meta.env.VITE_API_KEY;
   const normalizedQuery = queryTerms ?? "";
   const url = `https://api.themoviedb.org/3/${apiTargetPath}?api_key=${movie_key}&query=${normalizedQuery}`;
@@ -19,6 +21,7 @@ export const useFetch = <T,>(
   useEffect(() => {
     const controller = new AbortController();
     async function fetchMovies() {
+      setIsLoading(true);
       try {
         const fetchResponse = await fetch(url, {
           signal: controller.signal,
@@ -31,6 +34,9 @@ export const useFetch = <T,>(
           return;
         }
         console.error(err);
+        setError(true);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchMovies();
@@ -40,5 +46,5 @@ export const useFetch = <T,>(
     };
   }, [url]);
 
-  return { data };
+  return { data, isLoading, isError };
 };
