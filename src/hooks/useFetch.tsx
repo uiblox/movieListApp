@@ -17,12 +17,27 @@ export const useFetch = <T,>(
   const url = `https://api.themoviedb.org/3/${apiTargetPath}?api_key=${movie_key}&query=${normalizedQuery}`;
 
   useEffect(() => {
+    const controller = new AbortController();
     async function fetchMovies() {
-      const fetchResponse = await fetch(url);
-      const jsonResponse = await fetchResponse.json();
-      setData((jsonResponse.results ?? []) as T[]);
+      try {
+        const fetchResponse = await fetch(url, {
+          signal: controller.signal,
+        });
+        const jsonResponse = await fetchResponse.json();
+        setData((jsonResponse.results ?? []) as T[]);
+      } catch (err: unknown) {
+        if (err instanceof DOMException && err.name === "AbortError") {
+          // ignore state updates if the fetch was aborted
+          return;
+        }
+        console.error(err);
+      }
     }
     fetchMovies();
+
+    return () => {
+      controller.abort();
+    };
   }, [url]);
 
   return { data };
